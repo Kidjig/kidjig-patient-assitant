@@ -176,3 +176,7 @@ cython_debug/
 # MP3 files
 *.mp3
 
+.gradio/
+ai/
+interface/
+prompts/
