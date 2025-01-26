@@ -48,19 +48,30 @@ def record_audio_segment(file_path, timeout=20, phrase_time_limit=None):
         logging.warning("Timeout: No speech detected.")
 
 
-audio_filepath = "data/raw/test.mp3"
+audio_filepath = "data/raw/patient/test.mp3"
 # record_audio_segment(audio_filepath)
+
 
 # Setup TTS to text-STT-model for transcription
 # Call Model
-client = Groq()
-stt_llm = "whisper-large-v3"
+def transcribe_audio(audio_filepath: str) -> str:
+    """
+    Transcribe an audio file to text using Groq's Whisper model.
 
-audio_file = open(audio_filepath, "rb")
-transcription = client.audio.transcriptions.create(
-    model=stt_llm,
-    file=audio_file,
-    language="en",
-)
+    Args:
+        audio_filepath (str): Path to the audio file to transcribe
 
-print(transcription.text)
+    Returns:
+        str: Transcribed text from the audio file
+    """
+    client = Groq()
+    stt_llm = "whisper-large-v3"
+
+    with open(audio_filepath, "rb") as audio_file:
+        transcription = client.audio.transcriptions.create(
+            model=stt_llm,
+            file=audio_file,
+            language="en",
+        )
+
+    return transcription.text

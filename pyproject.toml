@@ -5,11 +5,26 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
+    "elevenlabs>=1.50.5",
+    "gradio>=5.13.1",
     "groq>=0.15.0",
+    "gtts>=2.5.4",
     "pyaudio>=0.2.14",
     "pydantic>=2.10.6",
     "pydantic-settings>=2.7.1",
     "pydub>=0.25.1",
     "python-dotenv>=1.0.1",
     "speechrecognition>=3.14.1",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = [
+  "."
 ]
