@@ -177,6 +177,3 @@ cython_debug/
 *.mp3
 
 .gradio/
-ai/
-interface/
-prompts/
